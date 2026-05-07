@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Venndigm LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --navy:   #0E2841;
+      --teal:   #156082;
+      --blue:   #0F9ED5;
+      --skyblue: #C5E4F3;
+      --gold:   #D4A843;
+      --yellow: #F0C040;
+      --light:  #E8E8E8;
+      --white:  #ffffff;
+      --text:   #1a1a2e;
+      --muted:  #5a6a7a;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+ 
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: #1f5181;
+      padding: 0 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; }
+    .nav-logo svg { height: 34px; width: auto; }
+    .nav-logo-text {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+ 
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, #0d3452 45%, var(--teal) 100%);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 120px 2rem 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 60%, rgba(15,158,213,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 75% 30%, rgba(240,192,64,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.18;
+      max-width: 780px;
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero h1 span { color: var(--yellow); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.8);
+      max-width: 640px;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-divider {
+      width: 60px; height: 3px;
+      background: var(--yellow);
+      margin: 2rem auto;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; margin-top: 0.5rem;
+      animation: fadeUp 0.8s 0.5s ease both;
+      flex-wrap: wrap; justify-content: center;
+    }
+    .btn {
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: #0d8bbf; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+      transform: translateY(-2px);
+    }
+ 
+    /* ── SECTIONS ── */
+    section { padding: 100px 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+ 
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.7rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .title-bar {
+      width: 50px; height: 3px;
+      background: var(--yellow);
+      margin-bottom: 2rem;
+    }
+ 
+    /* ── ABOUT ── */
+    #about { background: #EDF5FB; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-aside {
+      position: sticky; top: 90px;
+    }
+    .about-card {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 2.2rem;
+      color: var(--white);
+    }
+    .about-card .name {
+      font-family: 'Source Sans 3', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .about-card .card-subtitle {
+      font-size: 0.82rem;
+      color: var(--skyblue);
+      font-weight: 400;
+      margin-bottom: 1.6rem;
+      line-height: 1.4;
+      letter-spacing: 0.02em;
+    }
+ 
+    /* ── CAREER TIMELINE ── */
+    .career-timeline {
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+    /* Vertical line runs through centre of the 24px dot column */
+    .career-timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom,
+        var(--skyblue) 0%,
+        var(--blue) 60%,
+        var(--yellow) 100%);
+      border-radius: 2px;
+    }
+    .career-step {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.32rem 0;
+    }
+    /* Dot lives in its own fixed-width column so it never touches the label */
+    .step-dot {
+      flex-shrink: 0;
+      width: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-dot span {
+      display: block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--navy);
+      border: 2.5px solid var(--yellow);
+    }
+    .career-step:first-child .step-dot span {
+      background: var(--skyblue);
+      border-color: var(--skyblue);
+      width: 12px; height: 12px;
+    }
+    .career-step:last-child .step-dot span {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      width: 12px; height: 12px;
+    }
+    .step-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.3;
+    }
+    .career-step:first-child .step-label { color: var(--skyblue); font-weight: 600; }
+    .career-step:last-child  .step-label { color: var(--yellow); font-weight: 600; }
+ 
+    .about-card .linkedin-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--blue);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.65rem 1.2rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .about-card .linkedin-btn:hover { background: #0d8bbf; }
+ 
+    .about-body p {
+      font-size: 1.05rem;
+      line-height: 1.82;
+      color: #2c3e50;
+      margin-bottom: 1.3rem;
+    }
+    .about-body p:last-child { margin-bottom: 0; }
+ 
+    /* ── INITIATIVES ── */
+    #initiatives { background: var(--white); }
+    .initiatives-intro {
+      max-width: 680px;
+      margin-bottom: 4rem;
+    }
+    .initiatives-intro p {
+      font-size: 1.08rem;
+      line-height: 1.78;
+      color: var(--muted);
+    }
+ 
+    .initiative-card {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0 2.5rem;
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--light);
+    }
+    .initiative-card:last-child {
+      border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+    }
+    .initiative-num {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.3rem;
+    }
+    .num-1 { background: var(--navy);  color: var(--yellow); }
+    .num-2 { background: var(--teal);  color: var(--skyblue); }
+    .num-3 { background: var(--blue);  color: var(--white); }
+ 
+    .initiative-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.4rem;
+    }
+    .initiative-tagline {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .initiative-body p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #3a4a5a;
+      margin-bottom: 1.2rem;
+    }
+    .initiative-links {
+      display: flex; flex-wrap: wrap; gap: 0.7rem;
+      margin-top: 0.5rem;
+    }
+    .link-btn {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1.5px solid;
+    }
+    .link-btn.primary {
+      background: var(--navy); color: var(--white); border-color: var(--navy);
+    }
+    .link-btn.primary:hover { background: var(--teal); border-color: var(--teal); }
+    .link-btn.secondary {
+      background: transparent; color: var(--navy); border-color: #c0cdd8;
+    }
+    .link-btn.secondary:hover { border-color: var(--teal); color: var(--teal); }
+    .link-btn svg { flex-shrink: 0; }
+ 
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 3.5rem 2rem;
+    }
+    footer img {
+      height: 32px;
+      filter: brightness(0) invert(1);
+      margin-bottom: 1.2rem;
+      opacity: 0.85;
+    }
+    footer p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.4rem; }
+    footer a { color: var(--skyblue); text-decoration: none; }
+    footer a:hover { color: var(--yellow); text-decoration: underline; }
+    footer .footer-copy {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+ 
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-aside { position: static; }
+      .initiative-card { grid-template-columns: 1fr; gap: 1rem; }
+      section { padding: 70px 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="data:image/jpeg;base64,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" alt="Venndigm" style="height:38px; display:block;" />
+  </a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#initiatives">Initiatives</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+  <h1>Where Knowledge Meets <span>Impact</span></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-sub">Venndigm wasfounded to bridge knowledge and skills gaps — through financial education, workforce development, and consulting that turns expertise into measurable outcomes.</p>
+  <div class="hero-cta">
+    <a href="#initiatives" class="btn btn-primary">Explore Our Work</a>
+    <a href="#about" class="btn btn-outline">About Dr. Thomas</a>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-aside">
+        <div class="about-card">
+          <div class="name">Oommen Thomas, PhD</div>
+          <div class="card-subtitle">Founder, Venndigm LLC</div>
+ 
+          <div class="career-timeline">
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Engineer</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Financial Economist</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Consulting Business Economist</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Finance Executive</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">People Development Leader</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Consulting Practice Leader</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Entrepreneur</span></div>
+            <div class="career-step"><div class="step-dot"><span></span></div><span class="step-label">Business School Faculty</span></div>
+          </div>
+ 
+          <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener" class="linkedin-btn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+ 
+      <div class="about-body">
+        <div class="section-label">About</div>
+        <h2 class="section-title">A Career Built Across Disciplines</h2>
+        <div class="title-bar"></div>
+        <p>Venndigm was founded by Oommen Thomas, PhD — a financial economist, engineer, and educator who came to academia after a 25-year career in consulting and industry. His journey took him from engineering into finance via graduate school, and from industry into academia — a path that gave him a rare, multi-lens view of how knowledge gaps shape organizational outcomes.</p>
+        <p>Along the way, Dr. Thomas spent over two decades in technical and leadership roles solving complex, high-stakes financial problems, including serving as US Head of the IP Consulting practice at KPMG, Managing Director in the Economic and Valuation Services (EVS) practice, and National People Development Leader for EVS. He currently holds a joint Finance and Supply Chain/Information Management faculty appointment at the D'Amore-McKim School of Business at Northeastern University.</p>
+        <p>To put that learning from and experience of seeing how knowledge and skills gaps cause heavy underutilization of talent, he has invested in multiple initiatives to bridge those gaps at scale.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- INITIATIVES -->
+<section id="initiatives">
+  <div class="container">
+    <div class="initiatives-intro">
+      <div class="section-label">Focus Areas</div>
+      <h2 class="section-title">Three Initiatives.<br>One Mission.</h2>
+      <div class="title-bar"></div>
+      <p>Each initiative under Venndigm targets a specific gap — in financial literacy, in workforce readiness, or in strategic business capability — with the same core conviction: that well-directed knowledge creates outsized value.</p>
+    </div>
+ 
+    <!-- 1: Financial Library -->
+    <div class="initiative-card">
+      <div class="initiative-num num-1">01</div>
+      <div class="initiative-body">
+        <h3>The Financial Library</h3>
+        <div class="initiative-tagline">Free Applied Finance Education</div>
+        <p>Traditional finance education leads with formulas, accounting mechanics, and theory — great for aspiring finance experts, but overwhelming for everyone else. A physician evaluating a practice acquisition, an engineer making a build-versus-buy decision, an executive defending a capital request: the concepts exist, but the bridge to real decisions doesn't.</p>
+        <p>The Financial Library builds that bridge. Every piece of content starts with a practical business problem — the kind professionals actually encounter — and teaches the financial reasoning needed to work through it. The focus is on building intuition and decision-making logic, not technical mastery for its own sake. If you understand why the numbers matter and what they're telling you, you can engage with financial discussions, challenge assumptions, and make stronger decisions.</p>
+        <div class="initiative-links">
+          <a href="https://www.finance-library.com" target="_blank" rel="noopener" class="link-btn primary">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Visit Website
+          </a>
+          <a href="https://www.youtube.com/@Finance-Library" target="_blank" rel="noopener" class="link-btn secondary">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            YouTube Channel
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 2: SkillStrong -->
+    <div class="initiative-card">
+      <div class="initiative-num num-2">02</div>
+      <div class="initiative-body">
+        <h3>Project SkillStrong</h3>
+        <div class="initiative-tagline">Bridging America's Manufacturing Skills Gap</div>
+        <p>America's manufacturing renaissance — driven by reshoring, geopolitical realignment, and landmark government investment — is creating unprecedented demand for skilled workers. Yet 70% of manufacturers report hiring difficulties, 2.1 million manufacturing jobs are projected to go unfilled by 2030, and the training ecosystem remains fragmented and misaligned with Industry 4.0 needs.</p>
+        <p>Project SkillStrong addresses this workforce crisis by combining data-driven career identification with AI-powered guidance. Through <em>Coach Mach</em>, an AI career advisor, SkillStrong maps personalized skill-acquisition pathways into advanced manufacturing roles — supporting high school students exploring options and adults seeking career transitions. The focus is on accessible credentials: 2-year associate degrees, certificate programs, and apprenticeships that provide faster, more affordable paths to well-paying careers.</p>
+        <div class="initiative-links">
+          <a href="https://www.projectskillstrong.com" target="_blank" rel="noopener" class="link-btn primary">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Visit Website
+          </a>
+          <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener" class="link-btn secondary">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- 3: Consulting -->
+    <div class="initiative-card">
+      <div class="initiative-num num-3">03</div>
+      <div class="initiative-body">
+        <h3>Venndigm Consulting</h3>
+        <div class="initiative-tagline">Expert Advisory &amp; Strategic Consulting</div>
+        <p>Through Venndigm Consulting, Dr. Thomas brings 25+ years of executive and consulting experience — alongside deep technical expertise and a rich professional network — to help clients navigate complex business challenges. The practice spans performance improvement, intangible asset strategy, and transactions.</p>
+        <p>Engagements range from helping large organizations develop solutions to close skills gaps and monetize intellectual property, to supporting capital raises and serving as a strategic advisor to earlier-stage companies. Whether the challenge is organizational, financial, or strategic, the approach is the same: bring the right expertise, the right network, and a rigorous analytical framework to deliver real results.</p>
+        <div class="initiative-links">
+          <a href="mailto:othomas@venndigm.com" class="link-btn primary">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Get in Touch
+          </a>
+          <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener" class="link-btn secondary">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer id="contact">
+  <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-bottom:1.2rem;">
+    <svg viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:32px;">
+      <defs><clipPath id="bc2"><ellipse cx="18" cy="19" rx="12" ry="19" transform="rotate(-20 18 19)"/></clipPath></defs>
+      <ellipse cx="18" cy="19" rx="12" ry="19" transform="rotate(-20 18 19)" fill="#3AADEE"/>
+      <ellipse cx="28" cy="19" rx="12" ry="19" transform="rotate(20 28 19)" fill="#EDD000"/>
+      <ellipse cx="28" cy="19" rx="12" ry="19" transform="rotate(20 28 19)" fill="white" opacity="0.45" clip-path="url(#bc2)"/>
+    </svg>
+    <span style="font-family:\'Source Sans 3\',sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:0.14em;color:rgba(255,255,255,0.85);text-transform:uppercase;">Venndigm</span>
+  </div>
+  <p>Venndigm LLC &nbsp;|&nbsp; Bridging Knowledge &amp; Skills Gaps</p>
+  <p><a href="mailto:othomas@venndigm.com">othomas@venndigm.com</a></p>
+  <p>
+    <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener">LinkedIn</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://www.finance-library.com" target="_blank" rel="noopener">The Financial Library</a>
+    &nbsp;&middot;&nbsp;
+    <a href="https://www.projectskillstrong.com" target="_blank" rel="noopener">Project SkillStrong</a>
+  </p>
+  <div class="footer-copy">&copy; 2025 Venndigm LLC. All rights reserved.</div>
+</footer>
+ 
+</body>
+</html>

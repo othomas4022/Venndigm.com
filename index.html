@@ -291,38 +291,72 @@
       color: var(--muted);
     }
  
-    .initiative-card {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 0 2.5rem;
-      margin-bottom: 3.5rem;
-      padding-bottom: 3.5rem;
-      border-bottom: 1px solid var(--light);
-    }
-    .initiative-card:last-child {
-      border-bottom: none; margin-bottom: 0; padding-bottom: 0;
-    }
-    .initiative-num {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+    /* ── CONSULTING (primary block) ── */
+    .consulting-block { margin-bottom: 3rem; }
+    .consulting-block h3 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      flex-shrink: 0;
-      margin-top: 0.3rem;
-    }
-    .num-1 { background: var(--navy);  color: var(--yellow); }
-    .num-2 { background: var(--teal);  color: var(--skyblue); }
-    .num-3 { background: var(--blue);  color: var(--white); }
- 
-    .initiative-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.55rem;
+      font-size: 1.75rem;
       font-weight: 600;
       color: var(--navy);
       margin-bottom: 0.4rem;
     }
+    .consulting-block p {
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: #3a4a5a;
+      margin-bottom: 1.2rem;
+      max-width: 720px;
+    }
+
+    /* ── COMPANION PANEL: FINANCIAL LIBRARY ── */
+    .companion-panel {
+      background: #EDF5FB;
+      border-left: 3px solid var(--gold);
+      border-radius: 4px;
+      padding: 1.8rem 2.2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.6rem;
+      align-items: center;
+    }
+    .companion-icon {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1.5px solid var(--skyblue);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .companion-icon svg { width: 20px; height: 20px; stroke: var(--teal); }
+    .companion-eyebrow {
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .companion-panel h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 0.5rem;
+    }
+    .companion-panel p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #3a4a5a;
+      margin-bottom: 0.9rem;
+    }
+    .companion-panel .link-btn {
+      padding: 0.45rem 0.9rem;
+      font-size: 0.78rem;
+    }
+    @media (max-width: 640px) {
+      .companion-panel { grid-template-columns: 1fr; }
+    }
+
     .initiative-tagline {
       font-size: 0.92rem;
       font-weight: 600;
@@ -330,12 +364,6 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       margin-bottom: 1rem;
-    }
-    .initiative-body p {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: #3a4a5a;
-      margin-bottom: 1.2rem;
     }
     .initiative-links {
       display: flex; flex-wrap: wrap; gap: 0.7rem;
@@ -439,7 +467,6 @@
       .nav-links { display: none; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-aside { position: static; }
-      .initiative-card { grid-template-columns: 1fr; gap: 1rem; }
       section { padding: 70px 1.2rem; }
     }
   </style>
@@ -503,7 +530,8 @@
         <div class="title-bar"></div>
         <p>Venndigm was founded by Oommen Thomas, PhD — a financial economist, engineer, and educator who came to academia after a 25-year career in consulting and industry. His journey took him from engineering into finance via graduate school, and from industry into academia — a path that gave him a rare, multi-lens view of what actually drives performance inside a business.</p>
         <p>Along the way, Dr. Thomas founded and led the IP Consulting practice at KPMG, held consulting roles at firms including Deloitte and Law &amp; Economics Consulting Group, and served as Finance CVP at the global engineering firm AECOM. He currently holds a joint Finance and Supply Chain/Information Management faculty appointment at the D'Amore-McKim School of Business at Northeastern University's San Francisco Bay Area campus.</p>
-        <p>That combination of academic grounding and hands-on operating experience is what he now brings to mid-market companies through Venndigm Consulting — and what led him to launch The Financial Library and Project SkillStrong, initiatives that reflect a broader commitment to putting that experience to good use.</p>
+        <p>His consulting work spans a range of industries — including technology, life sciences, financial services, professional services, and manufacturing. Motivated by his experience as a shop floor engineer early in his career and by what he learned working with the National Association of Manufacturers, he also runs Project SkillStrong, a non-commercial effort focused on manufacturing workforce development.</p>
+        <p>That combination of academic grounding and hands-on operating experience is what he now brings to mid-market companies through Venndigm Consulting — and what led him to launch The Financial Library as well.</p>
       </div>
     </div>
   </div>
@@ -516,42 +544,41 @@
       <div class="section-label">Focus Areas</div>
       <h2 class="section-title">Consulting, Grounded in<br>Practice and Purpose.</h2>
       <div class="title-bar"></div>
-      <p>Venndigm Consulting is the core of the practice — independent advisory work for mid-market companies. The Financial Library gives free access to practical financial tools and resources, and offers a preview of how I think for anyone considering the work above. And Project SkillStrong reflects a separate commitment: giving back to communities working to build careers in manufacturing.</p>
+      <p>Venndigm Consulting is independent advisory work for mid-market companies, focused on two questions: how to improve profitability, and how to prepare a business to maximize value at exit.</p>
     </div>
- 
-    <!-- 1: Venndigm Consulting -->
-    <div class="initiative-card">
-      <div class="initiative-num num-1">01</div>
-      <div class="initiative-body">
-        <h3>Venndigm Consulting</h3>
-        <div class="initiative-tagline">Academic Rigor. Deep Industry Experience. No Overhead.</div>
-        <p>Alongside my work as a business school professor, I provide independent advisory consulting to mid-market companies, focused on two questions: how to improve profitability — understanding what's actually driving margin — and how to prepare a business to maximize value at exit.</p>
-        <p>Mid-market companies often face a frustrating trade-off: big consulting firm prices for advisory quality, or less expensive help of uncertain depth. Working independently and lean means clients get the benefit of academic rigor and decades of hands-on industry leadership, without funding a firm's overhead or a rotating cast of junior staff.</p>
-        <p>If your margins have drifted and you're not sure why, or you're considering a potential exit, I'd welcome a conversation.</p>
-        <div class="initiative-links">
-          <a href="mailto:admin@venndigm.com" class="link-btn primary">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            Get in Touch
-          </a>
-          <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener" class="link-btn secondary">
-            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            LinkedIn
-          </a>
-        </div>
+
+    <!-- PRIMARY: VENNDIGM CONSULTING -->
+    <div class="consulting-block">
+      <h3>Venndigm Consulting</h3>
+      <div class="initiative-tagline">Academic Rigor. Deep Industry Experience. No Overhead.</div>
+      <p>Alongside my work as a business school professor, I provide independent advisory consulting to mid-market companies, focused on two questions: how to improve profitability — understanding what's actually driving margin — and how to prepare a business to maximize value at exit.</p>
+      <p>Mid-market companies often face a frustrating trade-off: big consulting firm prices for advisory quality, or less expensive help of uncertain depth. Working independently and lean means clients get the benefit of academic rigor and decades of hands-on industry leadership, without funding a firm's overhead or a rotating cast of junior staff.</p>
+      <p>If your margins have drifted and you're not sure why, or you're considering a potential exit, I'd welcome a conversation.</p>
+      <div class="initiative-links">
+        <a href="mailto:admin@venndigm.com" class="link-btn primary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Get in Touch
+        </a>
+        <a href="https://www.linkedin.com/in/thomasoommen/" target="_blank" rel="noopener" class="link-btn secondary">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
       </div>
     </div>
- 
-    <!-- 2: Financial Library -->
-    <div class="initiative-card">
-      <div class="initiative-num num-2">02</div>
-      <div class="initiative-body">
-        <h3>The Financial Library</h3>
-        <div class="initiative-tagline">See How I Think, Before We Talk</div>
-        <p>A free, growing collection of interactive finance tools, videos, and written content, built for business owners and executives who don't always have formal training in finance. It's the same thinking that shapes my consulting work — available for anyone to judge for themselves, no engagement required.</p>
-        <div class="initiative-links">
-          <a href="https://www.finance-library.com" target="_blank" rel="noopener" class="link-btn primary">
+
+    <!-- COMPANION: FINANCIAL LIBRARY -->
+    <div class="companion-panel">
+      <div class="companion-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      </div>
+      <div>
+        <div class="companion-eyebrow">A Companion Resource</div>
+        <h4>The Financial Library</h4>
+        <p>Free interactive tools, videos, and frameworks — the same thinking behind the consulting work above, open for anyone to explore or judge for themselves. No engagement required.</p>
+        <div class="initiative-links" style="margin-top:0;">
+          <a href="https://www.finance-library.com" target="_blank" rel="noopener" class="link-btn secondary">
             <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Visit Website
+            Visit The Financial Library
           </a>
           <a href="https://www.youtube.com/@Finance-Library" target="_blank" rel="noopener" class="link-btn secondary">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -560,23 +587,7 @@
         </div>
       </div>
     </div>
- 
-    <!-- 3: Project SkillStrong -->
-    <div class="initiative-card">
-      <div class="initiative-num num-3">03</div>
-      <div class="initiative-body">
-        <h3>Project SkillStrong</h3>
-        <div class="initiative-tagline">Beyond the Balance Sheet</div>
-        <p>A commitment to supporting manufacturing workforce development — separate from my paid advisory work. I've been fortunate in my career, and Project SkillStrong is how I try to give back, focusing on communities like underserved high school students, veterans, and women entering the manufacturing workforce.</p>
-        <div class="initiative-links">
-          <a href="https://www.projectskillstrong.com" target="_blank" rel="noopener" class="link-btn primary">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            Visit Website
-          </a>
-        </div>
-      </div>
-    </div>
- 
+
   </div>
 </section>
  
